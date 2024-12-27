@@ -6,7 +6,8 @@ SPDX-License-Identifier: CC0-1.0
 
 # Git repository management
 
-OpenToFu based management of my mirror targets on Codeberg, Gitlab and GitHub.
+OpenTofu based management of my git repositories at Sourcehut
+with mirrors at Codeberg, Gitlab and GitHub.
 
 [![REUSE status](https://api.reuse.software/badge/git.sr.ht/~wombelix/git-repo-mgmt)](https://api.reuse.software/info/git.sr.ht/~wombelix/git-repo-mgmt)
 
@@ -21,13 +22,11 @@ OpenToFu based management of my mirror targets on Codeberg, Gitlab and GitHub.
 The primary location is:
 [git.sr.ht/~wombelix/git-repo-mgmt](https://git.sr.ht/~wombelix/git-repo-mgmt)
 
-<!--
 Mirrors are available on
 [Codeberg](https://codeberg.org/wombelix/git-repo-mgmt),
 [Gitlab](https://gitlab.com/wombelix/git-repo-mgmt)
 and
 [Github](https://github.com/wombelix/git-repo-mgmt).
--->
 
 ## Contribute
 
