@@ -17,11 +17,11 @@ repos:
       hooks:
         -   id: markdownlint
   -   repo: https://github.com/fsfe/reuse-tool
-      rev: v4.0.3
+      rev: v5.0.2
       hooks:
         -   id: reuse
   -   repo: https://github.com/commitizen-tools/commitizen
-      rev: v3.30.0
+      rev: v4.1.0
       hooks:
         -   id: commitizen
   - repo: https://github.com/tofuutils/pre-commit-opentofu
