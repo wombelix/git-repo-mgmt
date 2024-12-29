@@ -69,3 +69,26 @@ provider "registry.opentofu.org/integrations/github" {
     "zh:fbd1fee2c9df3aa19cf8851ce134dea6e45ea01cb85695c1726670c285797e25",
   ]
 }
+
+provider "registry.opentofu.org/wombelix/sourcehut" {
+  version     = "0.2.0"
+  constraints = "0.2.0"
+  hashes = [
+    "h1:TFbWpjJeXx7zGZFedXyLk3zDiCF2EmHZhhAZlu80AiM=",
+    "zh:01a7df6bc375af0ccf5de5600045901a69ed199794c1000d8ae9a0baec867b6c",
+    "zh:1c3e89cf19118fc07d7b04257251fc9897e722c16e0a0df7b07fcd261f8c12e7",
+    "zh:2b2e741e49f96a7e1014b3c81644f6be51e63e743ea61b242e453deee5471044",
+    "zh:5e20641c62a353636d2a2aec7f596444e02ca21854c20de333453bc97ed92537",
+    "zh:67a7556f3e10aede2404919b8473f4aba0620a8665fe4f139f52bd20e20fd289",
+    "zh:6c97d0e800a5399bb35b045870f40da60cf9fa341f5c11630407c1eec7a4b675",
+    "zh:9604a4928a895d8a8f1f15ca456bcf29576acedb8226a381e0843ebe36043bbe",
+    "zh:9a687067a719ba62f6c2eb2e430546bd144471b637ed15bca72d94d8d1bda81d",
+    "zh:cb9d9d81af5b4391be1ef0bd946dcec3608605370aceecfe0289ea1146ae98a4",
+    "zh:d3775a9abbcd130e87a9e9a985121bdb95ee46b2b354c463b5ed3015a2957ccf",
+    "zh:df936cf33f8f1374656d56d73d847eb0746c7804941178b4792f0e35ed6d0ab0",
+    "zh:e2bcdae2920a529a6096c17edb0ff0d3fa58652b3331787da3f22078feffa8f3",
+    "zh:f02c0f797e752addbfe5dc54cd51c3e79f9d22949159a85651511c8054ff9069",
+    "zh:fb93e5ec554a1fa5876e65c375f322a326957e27317ac986d7679076cf5413d1",
+    "zh:fc14ca16e9ccd48b15015e4db53a7de60b4255f995a031a71becc6a2212f9d70",
+  ]
+}
