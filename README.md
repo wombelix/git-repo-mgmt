@@ -10,6 +10,7 @@ OpenTofu based management of my git repositories at Sourcehut
 with mirrors at Codeberg, Gitlab and GitHub.
 
 [![REUSE status](https://api.reuse.software/badge/git.sr.ht/~wombelix/git-repo-mgmt)](https://api.reuse.software/info/git.sr.ht/~wombelix/git-repo-mgmt)
+[![builds.sr.ht status](https://builds.sr.ht/~wombelix/git-repo-mgmt.svg)](https://builds.sr.ht/~wombelix/git-repo-mgmt?)
 
 ## Table of Contents
 
@@ -24,7 +25,7 @@ To interact with AWS (S3 Backend and KMS encryption) and the various git forges,
 the following Environment variables have to be set:
 
 ```
-AWS_REGION=
+AWS_REGION
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
 GITEA_BASE_URL
