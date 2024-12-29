@@ -13,9 +13,35 @@ with mirrors at Codeberg, Gitlab and GitHub.
 
 ## Table of Contents
 
+* [Usage](#usage)
 * [Source](#source)
 * [Contribute](#contribute)
 * [License](#license)
+
+## Usage
+
+To interact with AWS (S3 Backend and KMS encryption) and the various git forges,
+the following Environment variables have to be set:
+
+```
+AWS_REGION=
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+GITEA_BASE_URL
+GITEA_TOKEN
+GITLAB_TOKEN
+GITHUB_TOKEN
+SRHT_TOKEN
+TF_VAR_aws_region
+TF_VAR_aws_account_id
+TF_VAR_aws_kms_name
+TF_VAR_aws_s3_bucket
+TF_VAR_project
+```
+
+To managed already existing repositories, use
+`tofu import module.<modulename>.<resource>.sourcehut <resourcename>`, example:
+`tofu import module.tmp-opentofu-test-repo.sourcehut_repository.sourcehut tmp-opentofu-test-repo`
 
 ## Source
 
@@ -26,7 +52,7 @@ Mirrors are available on
 [Codeberg](https://codeberg.org/wombelix/git-repo-mgmt),
 [Gitlab](https://gitlab.com/wombelix/git-repo-mgmt)
 and
-[Github](https://github.com/wombelix/git-repo-mgmt).
+[GitHub](https://github.com/wombelix/git-repo-mgmt).
 
 ## Contribute
 
