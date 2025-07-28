@@ -24,8 +24,12 @@ variable "website" {
   description = "Website to link from repository"
 }
 
-variable "mirror_of_base" {
+variable "primary_platform" {
   type        = string
-  default     = "https://git.sr.ht/~wombelix"
-  description = "Base URL of primary git forge"
+  default     = "sourcehut"
+  description = "Primary platform (sourcehut, github, gitlab, codeberg)"
+  validation {
+    condition     = contains(["sourcehut", "github", "gitlab", "codeberg"], var.primary_platform)
+    error_message = "Primary platform must be one of: sourcehut, github, gitlab, codeberg."
+  }
 }

@@ -40,6 +40,21 @@ TF_VAR_aws_s3_bucket
 TF_VAR_project
 ```
 
+By default, Sourcehut is used as the primary repository with mirrors on
+Codeberg, Gitlab and GitHub. To use a different platform as primary
+(e.g., GitHub for GitHub Actions), set the `primary_platform` variable:
+
+```hcl
+module "my-github-repo" {
+  source           = "./modules/repos"
+  repo_name        = "my-project"
+  description      = "My project description"
+  primary_platform = "github"
+}
+```
+
+Supported primary platforms: `sourcehut` (default), `github`, `gitlab`, `codeberg`.
+
 To managed already existing repositories, use
 `tofu import module.<modulename>.<resource>.sourcehut <resourcename>`, example:
 `tofu import module.tmp-opentofu-test-repo.sourcehut_repository.sourcehut tmp-opentofu-test-repo`
