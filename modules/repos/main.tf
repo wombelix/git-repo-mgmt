@@ -36,17 +36,18 @@ resource "sourcehut_repository" "sourcehut" {
 
 # Codeberg.org mirror
 resource "gitea_repository" "codeberg" {
-  name              = var.repo_name
-  username          = var.username
-  auto_init         = false
-  description       = local.descriptions.codeberg
-  has_issues        = true
-  has_projects      = false
-  has_pull_requests = true
-  has_wiki          = false
-  private           = false
-  website           = var.website
-  archived          = var.archived
+  name               = var.repo_name
+  username           = var.username
+  auto_init          = false
+  description        = local.descriptions.codeberg
+  has_issues         = true
+  has_projects       = false
+  has_pull_requests  = true
+  has_wiki           = false
+  private            = false
+  website            = var.website
+  archived           = var.archived
+  archive_on_destroy = false
 }
 
 # Gitlab.com mirror
