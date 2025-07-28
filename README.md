@@ -55,6 +55,20 @@ module "my-github-repo" {
 
 Supported primary platforms: `sourcehut` (default), `github`, `gitlab`, `codeberg`.
 
+To archive a repository, set the `archived` parameter:
+
+```hcl
+module "archived-repo" {
+  source      = "./modules/repos"
+  repo_name   = "old-project"
+  description = "Legacy project no longer maintained"
+  archived    = true
+}
+```
+
+Archived repositories are read-only on GitHub, GitLab and Codeberg.
+Sourcehut doesn't support archiving, so an `[ARCHIVED]` prefix is added to the description.
+
 To managed already existing repositories, use
 `tofu import module.<modulename>.<resource>.sourcehut <resourcename>`, example:
 `tofu import module.tmp-opentofu-test-repo.sourcehut_repository.sourcehut tmp-opentofu-test-repo`

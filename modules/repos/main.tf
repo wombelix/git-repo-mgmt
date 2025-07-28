@@ -12,11 +12,18 @@ locals {
 
   primary_url = local.platform_urls[var.primary_platform]
 
-  descriptions = {
+  base_descriptions = {
     sourcehut = var.primary_platform == "sourcehut" ? var.description : "${var.description}. Mirror of ${local.primary_url}/${var.repo_name}"
     github    = var.primary_platform == "github" ? var.description : "${var.description}. Mirror of ${local.primary_url}/${var.repo_name}"
     gitlab    = var.primary_platform == "gitlab" ? var.description : "${var.description}. Mirror of ${local.primary_url}/${var.repo_name}"
     codeberg  = var.primary_platform == "codeberg" ? var.description : "${var.description}. Mirror of ${local.primary_url}/${var.repo_name}"
+  }
+
+  descriptions = {
+    sourcehut = var.archived ? "[ARCHIVED] ${local.base_descriptions.sourcehut}" : local.base_descriptions.sourcehut
+    github    = local.base_descriptions.github
+    gitlab    = local.base_descriptions.gitlab
+    codeberg  = local.base_descriptions.codeberg
   }
 }
 
@@ -39,6 +46,7 @@ resource "gitea_repository" "codeberg" {
   has_wiki          = false
   private           = false
   website           = var.website
+  archived          = var.archived
 }
 
 # Gitlab.com mirror
@@ -64,6 +72,7 @@ resource "gitlab_project" "gitlab" {
   snippets_enabled                = false
   visibility_level                = "public"
   wiki_enabled                    = false
+  archived                        = var.archived
 }
 
 # GitHub.com mirror
@@ -77,4 +86,5 @@ resource "github_repository" "github" {
   has_projects    = false
   has_wiki        = false
   auto_init       = false
+  archived        = var.archived
 }

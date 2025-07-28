@@ -33,3 +33,9 @@ variable "primary_platform" {
     error_message = "Primary platform must be one of: sourcehut, github, gitlab, codeberg."
   }
 }
+
+variable "archived" {
+  type        = bool
+  default     = false
+  description = "Whether the repository should be archived"
+}
