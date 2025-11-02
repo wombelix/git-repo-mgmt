@@ -21,9 +21,9 @@ locals {
 
   descriptions = {
     sourcehut = var.archived ? "[ARCHIVED] ${local.base_descriptions.sourcehut}" : local.base_descriptions.sourcehut
-    github    = local.base_descriptions.github
-    gitlab    = local.base_descriptions.gitlab
-    codeberg  = local.base_descriptions.codeberg
+    github    = var.archived ? "[ARCHIVED] ${local.base_descriptions.github}" : local.base_descriptions.github
+    gitlab    = var.archived ? "[ARCHIVED] ${local.base_descriptions.gitlab}" : local.base_descriptions.gitlab
+    codeberg  = var.archived ? "[ARCHIVED] ${local.base_descriptions.codeberg}" : local.base_descriptions.codeberg
   }
 }
 

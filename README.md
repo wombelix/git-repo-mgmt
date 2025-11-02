@@ -67,7 +67,8 @@ module "archived-repo" {
 ```
 
 Archived repositories are read-only on GitHub, GitLab and Codeberg.
-Sourcehut doesn't support archiving, so an `[ARCHIVED]` prefix is added to the description.
+Sourcehut doesn't support archiving, so an `[ARCHIVED]` prefix is added
+to the description on all platforms.
 
 To managed already existing repositories, use
 `tofu import module.<modulename>.<resource>.sourcehut <resourcename>`, example:
