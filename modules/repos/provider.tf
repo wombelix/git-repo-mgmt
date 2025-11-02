@@ -26,7 +26,7 @@ terraform {
     }
     sourcehut = {
       source  = "wombelix/sourcehut"
-      version = "0.2.1"
+      version = "1.0.1"
 
       # SRHT_TOKEN env var
     }
