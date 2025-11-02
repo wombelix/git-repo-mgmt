@@ -6,4 +6,5 @@ module "sourcehut-go" {
   source      = "./modules/repos"
   repo_name   = "sourcehut-go"
   description = "A Go SDK for accessing the sourcehut legacy REST API"
+  archived    = true
 }
