@@ -6,6 +6,7 @@ provider "registry.opentofu.org/gitlabhq/gitlab" {
   constraints = "18.2.0"
   hashes = [
     "h1:gBCCpvxU1x3fG2uj83NYppyzya/GyUN1d5ClydXnpqc=",
+    "h1:garUl416m1Hzcisb0E4sHFIpRdq6qwy/5vkkqK+yh+g=",
     "zh:16315eefa33a565a11424c63e40fbe41baf252249e8f34154f2149ecf6ff85e7",
     "zh:1890ad336cd1c7b5edbc0f7ab8a98d570830ed9fbf6ae932fb88dacb23d0e668",
     "zh:1cdfd6ef9de01034dfa73d6bbdc0dfc3a8dcc16130c821eae03be3c61c91295b",
@@ -29,6 +30,7 @@ provider "registry.opentofu.org/go-gitea/gitea" {
   constraints = "0.7.0"
   hashes = [
     "h1:h8wwkY+MaTrSnUlnmHH96Mr3vJpg61eSkLTAQraysDs=",
+    "h1:hgZhNe+B1ir7gnMXba038y74+bb8781jcWYbkOFe3/I=",
     "zh:12b7da04c4285e1549879909c3f453c9850842c9da59e5f3682100040372cf97",
     "zh:18506790b2c6abf323ad067d02d2fee6638f5d3d76799840d8d09c2ede35153a",
     "zh:199151c28094d187e8a6e824616558310f32c6ac037edf9534fc8b3e2848b9f6",
@@ -52,6 +54,7 @@ provider "registry.opentofu.org/integrations/github" {
   constraints = "6.6.0"
   hashes = [
     "h1:Fp0RrNe+w167AQkVUWC1WRAsyjhhHN7aHWUky7VkKW8=",
+    "h1:P4SRG4605PvPKASeDu1lW49TTz1cCGsjQ7qbOBgNd6I=",
     "zh:0b1b5342db6a17de7c71386704e101be7d6761569e03fb3ff1f3d4c02c32d998",
     "zh:2fb663467fff76852126b58315d9a1a457e3b04bec51f04bf1c0ddc9dfbb3517",
     "zh:4183e557a1dfd413dae90ca4bac37dbbe499eae5e923567371f768053f977800",
@@ -75,6 +78,7 @@ provider "registry.opentofu.org/wombelix/sourcehut" {
   constraints = "1.0.1"
   hashes = [
     "h1:WX0nakEOBSHrCBxRSbtdA98X0Gv5CTYIhR3HaZbzrhY=",
+    "h1:t2MVT39SKKLDlhE12m4rtnJY+QUjmk43yTAkPar45xM=",
     "zh:0501c143ac98502b484b93f1e70143521d352006cc5c7fe3cb1d284f06b6993c",
     "zh:0f37424aa9bafbad1291eb70d6ecc2f89dca593fa6281e75b51cac7c41c901d0",
     "zh:1c3e89cf19118fc07d7b04257251fc9897e722c16e0a0df7b07fcd261f8c12e7",
