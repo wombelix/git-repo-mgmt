@@ -2,8 +2,13 @@
 #
 # SPDX-License-Identifier: MIT
 
-module "earth-xlii-cc" {
+module "geeko-xlii-cc" {
   source      = "./modules/repos"
-  repo_name   = "earth-xlii-cc"
-  description = "Server configuration: earth.xlii.cc"
+  repo_name   = "geeko-xlii-cc"
+  description = "Server config: geeko.xlii.cc"
+}
+
+moved {
+  from = module.earth-xlii-cc
+  to   = module.geeko-xlii-cc
 }
