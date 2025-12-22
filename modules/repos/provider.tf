@@ -14,13 +14,13 @@ terraform {
     }
     gitlab = {
       source  = "gitlabhq/gitlab"
-      version = "18.2.0"
+      version = "18.7.0"
 
       # GITLAB_TOKEN env var
     }
     github = {
       source  = "integrations/github"
-      version = "6.6.0"
+      version = "6.9.0"
 
       # GITHUB_TOKEN env var
     }
