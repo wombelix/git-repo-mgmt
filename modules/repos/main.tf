@@ -62,17 +62,17 @@ resource "gitlab_project" "gitlab" {
   feature_flags_access_level      = "disabled"
   infrastructure_access_level     = "disabled"
   initialize_with_readme          = false
-  issues_enabled                  = true
+  issues_access_level             = "enabled"
   lfs_enabled                     = false
-  merge_requests_enabled          = true
+  merge_requests_access_level     = "enabled"
   model_experiments_access_level  = "disabled"
   model_registry_access_level     = "disabled"
   monitor_access_level            = "disabled"
   packages_enabled                = false
   path                            = var.repo_name
-  snippets_enabled                = false
+  snippets_access_level           = "disabled"
   visibility_level                = "public"
-  wiki_enabled                    = false
+  wiki_access_level               = "disabled"
   archived                        = var.archived
 }
 
