@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Dominik Wombacher <dominik@wombacher.cc>
+# SPDX-FileCopyrightText: 2025 Dominik Wombacher <dominik@wombacher.cc>
 #
 # SPDX-License-Identifier: MIT
 
@@ -29,6 +29,7 @@ locals {
 
 # Sourcehut
 resource "sourcehut_repository" "sourcehut" {
+  count       = var.enable_sourcehut ? 1 : 0
   name        = var.repo_name
   description = local.descriptions.sourcehut
   visibility  = "public"
@@ -36,6 +37,7 @@ resource "sourcehut_repository" "sourcehut" {
 
 # Codeberg.org mirror
 resource "gitea_repository" "codeberg" {
+  count              = var.enable_codeberg ? 1 : 0
   name               = var.repo_name
   username           = var.username
   auto_init          = false
@@ -52,6 +54,7 @@ resource "gitea_repository" "codeberg" {
 
 # Gitlab.com mirror
 resource "gitlab_project" "gitlab" {
+  count                           = var.enable_gitlab ? 1 : 0
   name                            = var.repo_name
   analytics_access_level          = "disabled"
   auto_devops_enabled             = false
@@ -78,6 +81,7 @@ resource "gitlab_project" "gitlab" {
 
 # GitHub.com mirror
 resource "github_repository" "github" {
+  count           = var.enable_github ? 1 : 0
   name            = var.repo_name
   description     = local.descriptions.github
   homepage_url    = var.website
@@ -88,4 +92,25 @@ resource "github_repository" "github" {
   has_wiki        = false
   auto_init       = false
   archived        = var.archived
+}
+
+# State migration: moved blocks to handle transition from non-count to count resources
+moved {
+  from = sourcehut_repository.sourcehut
+  to   = sourcehut_repository.sourcehut[0]
+}
+
+moved {
+  from = gitea_repository.codeberg
+  to   = gitea_repository.codeberg[0]
+}
+
+moved {
+  from = gitlab_project.gitlab
+  to   = gitlab_project.gitlab[0]
+}
+
+moved {
+  from = github_repository.github
+  to   = github_repository.github[0]
 }

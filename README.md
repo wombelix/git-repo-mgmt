@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2024 Dominik Wombacher <dominik@wombacher.cc>
+SPDX-FileCopyrightText: 2025 Dominik Wombacher <dominik@wombacher.cc>
 
 SPDX-License-Identifier: CC0-1.0
 -->
@@ -53,7 +53,44 @@ module "my-github-repo" {
 }
 ```
 
-Supported primary platforms: `sourcehut` (default), `github`, `gitlab`, `codeberg`.
+Supported primary platforms:
+`sourcehut` (default), `github`, `gitlab`, `codeberg`.
+
+To create a repository only on specific platforms,
+use the `enable_*` variables:
+
+```hcl
+module "github-only-repo" {
+  source           = "./modules/repos"
+  repo_name        = "my-project"
+  description      = "A GitHub-only project"
+  primary_platform = "github"
+  enable_github    = true
+  enable_sourcehut = false
+  enable_gitlab    = false
+  enable_codeberg  = false
+}
+```
+
+Or create a repository on GitHub with mirrors
+on GitLab and Codeberg (without Sourcehut):
+
+```hcl
+module "github-with-mirrors" {
+  source           = "./modules/repos"
+  repo_name        = "my-project"
+  description      = "GitHub primary with GitLab and Codeberg mirrors"
+  primary_platform = "github"
+  enable_github    = true
+  enable_sourcehut = false
+  enable_gitlab    = true
+  enable_codeberg  = true
+}
+```
+
+All platforms are enabled through the variables
+`enable_sourcehut`, `enable_github`,
+`enable_gitlab`, `enable_codeberg` by default (set to `true`).
 
 To archive a repository, set the `archived` parameter:
 
@@ -70,9 +107,9 @@ Archived repositories are read-only on GitHub, GitLab and Codeberg.
 Sourcehut doesn't support archiving, so an `[ARCHIVED]` prefix is added
 to the description on all platforms.
 
-To managed already existing repositories, use
-`tofu import module.<modulename>.<resource>.sourcehut <resourcename>`, example:
-`tofu import module.tmp-opentofu-test-repo.sourcehut_repository.sourcehut tmp-opentofu-test-repo`
+To manage already existing repositories, use
+`tofu import 'module.<modulename>.<resource>[0]' <resourcename>`, example:
+`tofu import 'module.tmp-opentofu-test-repo.sourcehut_repository.sourcehut[0]' tmp-opentofu-test-repo`
 
 ## Source
 
