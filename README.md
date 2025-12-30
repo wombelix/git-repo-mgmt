@@ -124,22 +124,22 @@ and
 
 ## Contribute
 
-Please don't hesitate to provide Feedback,
-open an Issue or create a Pull / Merge Request.
+Please don't hesitate to provide feedback,
+open an issue, or create a Pull / Merge Request.
 
 Just pick the workflow or platform you prefer and are most comfortable with.
 
-Feedback, bug reports or patches to my sr.ht list
+Feedback, bug reports, or patches sent to my sr.ht list
 [~wombelix/inbox@lists.sr.ht](https://lists.sr.ht/~wombelix/inbox) or via
 [Email and Instant Messaging](https://dominik.wombacher.cc/pages/contact.html)
 are also always welcome.
 
 ## License
 
-Unless otherwise stated: `MIT`
+Unless otherwise stated: `Apache 2.0`
 
-All files contain license information either as
-`header comment` or `corresponding .license` file.
+All files contain license information either as a
+`header comment` or a `corresponding .license` file.
 
 [REUSE](https://reuse.software) from the [FSFE](https://fsfe.org/)
-implemented to verify license and copyright compliance.
+is implemented to verify license and copyright compliance.
