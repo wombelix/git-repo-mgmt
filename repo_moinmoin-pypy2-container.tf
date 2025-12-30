@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2025 Dominik Wombacher <dominik@wombacher.cc>
 #
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache-2.0
 
 module "moinmoin-pypy2-container" {
   source      = "./modules/repos"

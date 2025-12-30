@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2024 Dominik Wombacher <dominik@wombacher.cc>
 #
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache-2.0
 
 module "cfn-custom-resource-aws-ssm-securestring" {
   source      = "./modules/repos"
