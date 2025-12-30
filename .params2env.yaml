@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2025 Dominik Wombacher <dominik@wombacher.cc>
+#
+# SPDX-License-Identifier: CC0-1.0
+
+region: eu-central-1
+replica: eu-west-1
+kms: alias/backend-encryption
+upper: true
+params:
+  - name: /configs/gitea_base_url
+  - name: /secrets/gitea_token
+  - name: /secrets/gitlab_token
+  - name: /secrets/github_token
+  - name: /secrets/srht_token
