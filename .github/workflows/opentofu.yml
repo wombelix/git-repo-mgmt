@@ -25,11 +25,11 @@ env:
   AWS_ACCOUNT_ID: '992382418145'
   AWS_ROLE_NAME: GitRepoMgmtRole
   TOFU_VERSION: '1.11.2'
-  PARAMS2ENV_VERSION: '0.3.0'
-  PARAMS2ENV_SHA256: '574bdee1bfcc0be730d54d0cfe574bbffdf8a965a8764da99f5dc40b7785183f'
+  PARAMS2ENV_VERSION: '0.4.0'
+  PARAMS2ENV_SHA256: '53d216058a29dd9328029d9c38dfcb21c25562baefc74e5fa8c8e9531029d393'
 
 jobs:
-  deploy:
+  iac:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -59,7 +59,7 @@ jobs:
           rm params2env.tar.gz
 
       - name: Load secrets from SSM
-        run: params2env read | sed 's/^export //' >> "$GITHUB_ENV"
+        run: params2env read
 
       - name: OpenTofu Plan
         run: tofu plan -input=false -compact-warnings -out=plan.file
