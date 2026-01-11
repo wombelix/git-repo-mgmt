@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2025 Dominik Wombacher <dominik@wombacher.cc>
+# SPDX-FileCopyrightText: 2026 Dominik Wombacher <dominik@wombacher.cc>
 #
 # SPDX-License-Identifier: Apache-2.0
 
@@ -42,18 +42,6 @@ variable "aws_dynamodb_table" {
   type        = string
   description = "AWS DynamoDB Table name for tf backend locking"
   default     = "dominik-wombacher-iac-opentofu"
-}
-
-variable "aws_backend_role" {
-  type        = string
-  description = "AWS IAM Role for tf remote backend access"
-  default     = "OpenTofuRemoteBackendRole"
-}
-
-variable "aws_encryption_role" {
-  type        = string
-  description = "AWS IAM Role for tf state encyption access"
-  default     = "OpenTofuStateEncryptionRole"
 }
 
 variable "project" {

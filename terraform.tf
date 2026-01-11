@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2025 Dominik Wombacher <dominik@wombacher.cc>
+# SPDX-FileCopyrightText: 2026 Dominik Wombacher <dominik@wombacher.cc>
 #
 # SPDX-License-Identifier: Apache-2.0
 
@@ -9,9 +9,6 @@ terraform {
       kms_key_id = "arn:${var.aws_partition}:kms:${var.aws_region}:${var.aws_account_id}:key/${var.aws_kms_name}"
       region     = var.aws_region
       key_spec   = "AES_256"
-      assume_role = {
-        role_arn = "arn:${var.aws_partition}:iam::${var.aws_account_id}:role/${var.aws_encryption_role}"
-      }
     }
     method "aes_gcm" "dominik-wombacher" {
       keys = key_provider.aws_kms.dominik-wombacher
@@ -28,8 +25,5 @@ terraform {
     encrypt                 = true
     kms_key_id              = "arn:${var.aws_partition}:kms:${var.aws_region}:${var.aws_account_id}:key/${var.aws_kms_name}"
     dynamodb_table          = "arn:${var.aws_partition}:dynamodb:${var.aws_region}:${var.aws_account_id}:table/${var.aws_dynamodb_table}"
-    assume_role = {
-      role_arn = "arn:${var.aws_partition}:iam::${var.aws_account_id}:role/${var.aws_backend_role}"
-    }
   }
 }
