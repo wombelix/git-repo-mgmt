@@ -55,7 +55,7 @@ jobs:
           curl -fsSL "https://github.com/wombelix/params2env/releases/download/v${{ env.PARAMS2ENV_VERSION }}/params2env_${{ env.PARAMS2ENV_VERSION }}_linux_amd64.tar.gz" -o params2env.tar.gz
           echo "${{ env.PARAMS2ENV_SHA256 }}  params2env.tar.gz" | sha256sum -c -
           tar xzf params2env.tar.gz
-          sudo mv params2env /usr/local/bin/
+          sudo mv params2env_${{ env.PARAMS2ENV_VERSION }}_linux_amd64/params2env /usr/local/bin/
           rm params2env.tar.gz
 
       - name: Load secrets from SSM
