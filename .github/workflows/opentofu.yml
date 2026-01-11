@@ -1,0 +1,68 @@
+# SPDX-FileCopyrightText: 2026 Dominik Wombacher <dominik@wombacher.cc>
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: OpenTofu
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.tf'
+      - '.terraform.lock.hcl'
+      - '.params2env.yaml'
+      - '.github/workflows/opentofu.yml'
+      - 'modules/**/*.tf'
+      - 'modules/**/.terraform.lock.hcl'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: eu-central-1
+  AWS_ACCOUNT_ID: '992382418145'
+  AWS_ROLE_NAME: GitRepoMgmtRole
+  TOFU_VERSION: '1.11.2'
+  PARAMS2ENV_VERSION: '0.3.0'
+  PARAMS2ENV_SHA256: '574bdee1bfcc0be730d54d0cfe574bbffdf8a965a8764da99f5dc40b7785183f'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.AWS_ROLE_NAME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup OpenTofu
+        uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: ${{ env.TOFU_VERSION }}
+          tofu_wrapper: false
+
+      - name: OpenTofu Init
+        run: tofu init -input=false
+
+      - name: Install params2env
+        run: |
+          curl -fsSL "https://github.com/wombelix/params2env/releases/download/v${{ env.PARAMS2ENV_VERSION }}/params2env_${{ env.PARAMS2ENV_VERSION }}_linux_amd64.tar.gz" -o params2env.tar.gz
+          echo "${{ env.PARAMS2ENV_SHA256 }}  params2env.tar.gz" | sha256sum -c -
+          tar xzf params2env.tar.gz
+          sudo mv params2env /usr/local/bin/
+          rm params2env.tar.gz
+
+      - name: Load secrets from SSM
+        run: params2env read | sed 's/^export //' >> "$GITHUB_ENV"
+
+      - name: OpenTofu Plan
+        run: tofu plan -input=false -compact-warnings -out=plan.file
+
+      - name: OpenTofu Apply
+        run: tofu apply -input=false -compact-warnings plan.file
