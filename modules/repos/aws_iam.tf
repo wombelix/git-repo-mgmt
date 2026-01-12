@@ -57,6 +57,23 @@ data "aws_iam_policy_document" "trust" {
       values   = [local.github_oidc_subject]
     }
   }
+
+  statement {
+    sid     = "SSOAdminTrust"
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:${var.aws_partition}:iam::${var.aws_account_id}:root"]
+    }
+
+    condition {
+      test     = "ArnLike"
+      variable = "aws:PrincipalArn"
+      values   = ["arn:${var.aws_partition}:iam::${var.aws_account_id}:role/aws-reserved/sso.amazonaws.com/*/AWSReservedSSO_AdministratorAccess_*"]
+    }
+  }
 }
 
 # IAM Role
