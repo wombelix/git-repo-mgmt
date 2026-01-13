@@ -1,14 +1,8 @@
-# SPDX-FileCopyrightText: 2024 Dominik Wombacher <dominik@wombacher.cc>
+# SPDX-FileCopyrightText: 2026 Dominik Wombacher <dominik@wombacher.cc>
 #
 # SPDX-License-Identifier: CC0-1.0
 
 image: debian/stable
-
-# packages:
-  # - apt-transport-https
-  # - ca-certificates
-  # - curl
-  # - gnupg
 
 sources:
   - https://git.sr.ht/~wombelix/git-repo-mgmt
@@ -16,15 +10,12 @@ sources:
 
 secrets:
   - 5b076ab5-1361-4d71-905b-4ff8c836c62c
-  # - 34483fff-da4a-4775-92b7-c8102eeb2402
-  # - 9d963538-9bc6-4819-addf-0d508ab98de8
 
 environment:
   GIT_MIRROR_SSH_KEY: ~/.ssh/5b076ab5-1361-4d71-905b-4ff8c836c62c
   GIT_MIRROR_GITHUB: git@github.com:wombelix/git-repo-mgmt.git
   GIT_MIRROR_GITLAB: git@gitlab.com:wombelix/git-repo-mgmt.git
   GIT_MIRROR_CODEBERG: git@codeberg.org:wombelix/git-repo-mgmt.git
-  # GO111MODULE: 'on'
 
 tasks:
   - mirror: |
@@ -37,53 +28,6 @@ tasks:
       git_mirror "$GIT_MIRROR_SSH_KEY" "$GIT_MIRROR_GITHUB"
       git_mirror "$GIT_MIRROR_SSH_KEY" "$GIT_MIRROR_GITLAB"
       git_mirror "$GIT_MIRROR_SSH_KEY" "$GIT_MIRROR_CODEBERG"
-
-  # - setup: |
-  #     # Set up the OpenTofu repository
-  #     sudo install -m 0755 -d /etc/apt/keyrings
-  #     curl -fsSL https://get.opentofu.org/opentofu.gpg | sudo tee /etc/apt/keyrings/opentofu.gpg >/dev/null
-  #     curl -fsSL https://packages.opentofu.org/opentofu/tofu/gpgkey | sudo gpg --no-tty --batch --dearmor -o /etc/apt/keyrings/opentofu-repo.gpg >/dev/null
-  #     sudo chmod a+r /etc/apt/keyrings/opentofu.gpg /etc/apt/keyrings/opentofu-repo.gpg
-  #     echo \
-  #       "deb [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main
-  #     deb-src [signed-by=/etc/apt/keyrings/opentofu.gpg,/etc/apt/keyrings/opentofu-repo.gpg] https://packages.opentofu.org/opentofu/tofu/any/ any main" | \
-  #       sudo tee /etc/apt/sources.list.d/opentofu.list > /dev/null
-  #     sudo chmod a+r /etc/apt/sources.list.d/opentofu.list
-
-  #     # Install OpenTofu
-  #     sudo apt-get update
-  #     sudo apt-get install -y tofu
-
-  # - init: |
-  #     set +x
-  #     source ~/.secret_git-repo-mgmt
-  #     source ~/.secret_iac-opentofu
-  #     set -x
-
-  #     cd git-repo-mgmt/
-
-  #     tofu init -input=false
-
-  # - plan: |
-  #     set +x
-  #     source ~/.secret_git-repo-mgmt
-  #     source ~/.secret_iac-opentofu
-  #     set -x
-
-  #     cd git-repo-mgmt/
-
-  #     tofu plan -input=false -compact-warnings -out=plan.file
-
-  # - apply: |
-  #     set +x
-  #     source ~/.secret_git-repo-mgmt
-  #     source ~/.secret_iac-opentofu
-  #     set -x
-
-  #     cd git-repo-mgmt/
-
-  #     tofu apply -input=false -compact-warnings plan.file
-  #     rm plan.file
 
 triggers:
   - action: email
