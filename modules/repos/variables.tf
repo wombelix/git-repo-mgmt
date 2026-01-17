@@ -110,6 +110,43 @@ variable "enable_aws_cross_account_assume" {
   description = "Grant permission to assume {repo_name}-ProjectRole in organization accounts"
 }
 
+variable "enable_aws_ssh_key" {
+  type        = bool
+  default     = false
+  description = "Generate ephemeral SSH key and store in SSM Parameter Store"
+
+  validation {
+    condition = (
+      !var.enable_aws_ssh_key ||
+      !var.enable_aws_iam_role ||
+      var.enable_aws_ssm_read
+    )
+    error_message = "When enable_aws_ssh_key and enable_aws_iam_role are both true, enable_aws_ssm_read must also be true so the IAM role can read the generated keys."
+  }
+}
+
+variable "aws_ssh_key_algorithm" {
+  type        = string
+  default     = "ED25519"
+  description = "SSH key algorithm: ED25519 (recommended) or RSA"
+
+  validation {
+    condition     = contains(["ED25519", "RSA"], var.aws_ssh_key_algorithm)
+    error_message = "aws_ssh_key_algorithm must be either ED25519 or RSA."
+  }
+}
+
+variable "aws_ssh_key_version" {
+  type        = number
+  default     = 1
+  description = "Version number for SSH key rotation. Increment to trigger key regeneration."
+
+  validation {
+    condition     = var.aws_ssh_key_version >= 1
+    error_message = "aws_ssh_key_version must be >= 1."
+  }
+}
+
 # AWS Configuration
 
 variable "aws_region" {

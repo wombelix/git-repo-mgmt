@@ -55,4 +55,8 @@ locals {
 
   ssm_path_primary = "arn:${var.aws_partition}:ssm:${var.aws_region}:${var.aws_account_id}:parameter/projects/${var.repo_name}/*"
   ssm_path_replica = "arn:${var.aws_partition}:ssm:${var.aws_region_replica}:${var.aws_account_id}:parameter/projects/${var.repo_name}/*"
+
+  # SSH Key SSM Paths
+  ssh_key_public_path  = "/projects/${var.repo_name}/ssh-key-pub"
+  ssh_key_private_path = "/projects/${var.repo_name}/ssh-key"
 }
