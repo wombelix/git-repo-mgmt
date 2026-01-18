@@ -25,8 +25,6 @@ env:
   AWS_ACCOUNT_ID: '992382418145'
   AWS_ROLE_NAME: GitRepoMgmtRole
   TOFU_VERSION: '1.11.2'
-  PARAMS2ENV_VERSION: '0.5.0'
-  PARAMS2ENV_SHA256: '899125099d328bbba903b3678a3e6ec1bc60d2d8861b1b412d824c02f65ba41d'
 
 jobs:
   iac:
@@ -51,12 +49,7 @@ jobs:
         run: tofu init -input=false
 
       - name: Install params2env
-        run: |
-          curl -fsSL "https://github.com/wombelix/params2env/releases/download/v${{ env.PARAMS2ENV_VERSION }}/params2env_${{ env.PARAMS2ENV_VERSION }}_linux_amd64.tar.gz" -o params2env.tar.gz
-          echo "${{ env.PARAMS2ENV_SHA256 }}  params2env.tar.gz" | sha256sum -c -
-          tar xzf params2env.tar.gz
-          sudo mv params2env_${{ env.PARAMS2ENV_VERSION }}_linux_amd64/params2env /usr/local/bin/
-          rm params2env.tar.gz
+        uses: wombelix/params2env@main
 
       - name: Load secrets from SSM
         run: params2env read
