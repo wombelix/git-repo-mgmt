@@ -57,6 +57,10 @@ locals {
   ssm_path_replica = "arn:${var.aws_partition}:ssm:${var.aws_region_replica}:${var.aws_account_id}:parameter/projects/${var.repo_name}/*"
 
   # SSH Key SSM Paths
-  ssh_key_public_path  = "/projects/${var.repo_name}/ssh-key-pub"
-  ssh_key_private_path = "/projects/${var.repo_name}/ssh-key"
+  ssh_private_key_openssh_path = "/projects/${var.repo_name}/ssh-private-key-openssh"
+  ssh_private_key_pem_path     = "/projects/${var.repo_name}/ssh-private-key-pem"
+  ssh_public_key_openssh_path  = "/projects/${var.repo_name}/ssh-public-key-openssh"
+  ssh_public_key_pem_path      = "/projects/${var.repo_name}/ssh-public-key-pem"
+  ssh_fingerprint_md5_path     = "/projects/${var.repo_name}/ssh-key-fingerprint-md5"
+  ssh_fingerprint_sha256_path  = "/projects/${var.repo_name}/ssh-key-fingerprint-sha256"
 }
