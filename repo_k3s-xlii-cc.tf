@@ -1,11 +1,11 @@
-# SPDX-FileCopyrightText: 2024 Dominik Wombacher <dominik@wombacher.cc>
+# SPDX-FileCopyrightText: 2026 Dominik Wombacher <dominik@wombacher.cc>
 #
 # SPDX-License-Identifier: Apache-2.0
 
-module "geeko-xlii-cc" {
+module "k3s-xlii-cc" {
   source      = "./modules/repos"
-  repo_name   = "geeko-xlii-cc"
-  description = "Server config: geeko.xlii.cc"
+  repo_name   = "k3s-xlii-cc"
+  description = "Server config: k3s.xlii.cc"
 
   enable_aws_ssh_key          = true
   enable_aws_iam_role         = true
@@ -14,6 +14,6 @@ module "geeko-xlii-cc" {
 }
 
 moved {
-  from = module.earth-xlii-cc
-  to   = module.geeko-xlii-cc
+  from = module.geeko-xlii-cc
+  to   = module.k3s-xlii-cc
 }
