@@ -6,6 +6,7 @@ module "k3s-xlii-cc" {
   source      = "./modules/repos"
   repo_name   = "k3s-xlii-cc"
   description = "Server config: k3s.xlii.cc"
+  archived    = true
 
   enable_aws_ssh_key          = false
   enable_aws_iam_role         = false
