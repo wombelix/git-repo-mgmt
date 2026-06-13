@@ -6,4 +6,5 @@ module "aws-neuron-driver-publish-source" {
   source      = "./modules/repos"
   repo_name   = "aws-neuron-driver-publish-source"
   description = "CLI tool to publish the source code of new AWS Neuron Driver releases"
+  archived    = true
 }
