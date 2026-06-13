@@ -7,10 +7,10 @@ module "k3s-xlii-cc" {
   repo_name   = "k3s-xlii-cc"
   description = "Server config: k3s.xlii.cc"
 
-  enable_aws_ssh_key          = true
-  enable_aws_iam_role         = true
-  enable_aws_opentofu_backend = true
-  enable_aws_ssm_read         = true
+  enable_aws_ssh_key          = false
+  enable_aws_iam_role         = false
+  enable_aws_opentofu_backend = false
+  enable_aws_ssm_read         = false
 }
 
 moved {
