@@ -8,6 +8,16 @@ variable "username" {
   description = "Username on git forges"
 }
 
+variable "github_template" {
+  type = object({
+    owner                = string
+    repository           = string
+    include_all_branches = optional(bool, false)
+  })
+  default     = null
+  description = "GitHub template repository this repo was created from"
+}
+
 variable "repo_name" {
   type        = string
   description = "Name of the repository"

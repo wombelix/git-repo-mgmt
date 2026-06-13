@@ -67,6 +67,15 @@ resource "github_repository" "github" {
   has_wiki        = false
   auto_init       = false
   archived        = var.archived
+
+  dynamic "template" {
+    for_each = var.github_template != null ? [var.github_template] : []
+    content {
+      owner                = template.value.owner
+      repository           = template.value.repository
+      include_all_branches = template.value.include_all_branches
+    }
+  }
 }
 
 # State migration: moved blocks to handle transition from non-count to count resources
