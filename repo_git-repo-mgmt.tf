@@ -6,4 +6,7 @@ module "git-repo-mgmt" {
   source      = "./modules/repos"
   repo_name   = "git-repo-mgmt"
   description = "OpenTofu based management of my git repositories"
+
+  enable_aws_iam_role                = true
+  enable_aws_ssm_read_git_deploy_key = true
 }
