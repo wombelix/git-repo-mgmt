@@ -36,7 +36,7 @@ variable "website" {
 
 variable "primary_platform" {
   type        = string
-  default     = "sourcehut"
+  default     = "github"
   description = "Primary platform (sourcehut, github, gitlab, codeberg)"
   validation {
     condition     = contains(["sourcehut", "github", "gitlab", "codeberg"], var.primary_platform)
