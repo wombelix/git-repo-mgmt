@@ -194,6 +194,26 @@ data "aws_iam_policy_document" "ssm_read_git_deploy_key" {
     ]
     resources = [local.ssm_git_deploy_key_path_replica]
   }
+
+  statement {
+    sid    = "KMSDecryptGitDeployKeyPrimary"
+    effect = "Allow"
+    actions = [
+      "kms:Decrypt",
+      "kms:DescribeKey"
+    ]
+    resources = [local.kms_key_arn]
+  }
+
+  statement {
+    sid    = "KMSDecryptGitDeployKeyReplica"
+    effect = "Allow"
+    actions = [
+      "kms:Decrypt",
+      "kms:DescribeKey"
+    ]
+    resources = [local.kms_key_replica_arn]
+  }
 }
 
 resource "aws_iam_role_policy" "ssm_read_git_deploy_key" {
