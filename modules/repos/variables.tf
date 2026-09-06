@@ -95,10 +95,11 @@ variable "enable_aws_iam_role" {
       !var.enable_aws_iam_role || (
         var.enable_aws_opentofu_backend ||
         var.enable_aws_ssm_read ||
+        var.enable_aws_ssm_read_git_deploy_key ||
         var.enable_aws_cross_account_assume
       )
     )
-    error_message = "When enable_aws_iam_role is true, at least one feature must be enabled (enable_aws_opentofu_backend, enable_aws_ssm_read, or enable_aws_cross_account_assume)."
+    error_message = "When enable_aws_iam_role is true, at least one feature must be enabled (enable_aws_opentofu_backend, enable_aws_ssm_read, enable_aws_ssm_read_git_deploy_key, or enable_aws_cross_account_assume)."
   }
 }
 
@@ -112,6 +113,12 @@ variable "enable_aws_ssm_read" {
   type        = bool
   default     = false
   description = "Grant read access to SSM parameters at /projects/{repo_name}/*"
+}
+
+variable "enable_aws_ssm_read_git_deploy_key" {
+  type        = bool
+  default     = false
+  description = "Grant read access to shared git deploy key SSM parameters at /projects/_git-deploy-key/*"
 }
 
 variable "enable_aws_cross_account_assume" {

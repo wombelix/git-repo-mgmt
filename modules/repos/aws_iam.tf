@@ -168,6 +168,41 @@ resource "aws_iam_role_policy" "ssm_read" {
   policy = data.aws_iam_policy_document.ssm_read[0].json
 }
 
+# Shared Git Deploy Key SSM Read Access
+
+data "aws_iam_policy_document" "ssm_read_git_deploy_key" {
+  count = var.enable_aws_iam_role && var.enable_aws_ssm_read_git_deploy_key ? 1 : 0
+
+  statement {
+    sid    = "SSMReadGitDeployKeyPrimary"
+    effect = "Allow"
+    actions = [
+      "ssm:GetParameter",
+      "ssm:GetParameters",
+      "ssm:GetParametersByPath"
+    ]
+    resources = [local.ssm_git_deploy_key_path_primary]
+  }
+
+  statement {
+    sid    = "SSMReadGitDeployKeyReplica"
+    effect = "Allow"
+    actions = [
+      "ssm:GetParameter",
+      "ssm:GetParameters",
+      "ssm:GetParametersByPath"
+    ]
+    resources = [local.ssm_git_deploy_key_path_replica]
+  }
+}
+
+resource "aws_iam_role_policy" "ssm_read_git_deploy_key" {
+  count  = var.enable_aws_iam_role && var.enable_aws_ssm_read_git_deploy_key ? 1 : 0
+  name   = "SSMGitDeployKeyReadAccess"
+  role   = aws_iam_role.github_oidc[0].id
+  policy = data.aws_iam_policy_document.ssm_read_git_deploy_key[0].json
+}
+
 # Cross-Account Role Assumption
 
 data "aws_iam_policy_document" "cross_account" {

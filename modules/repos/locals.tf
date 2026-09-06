@@ -56,6 +56,10 @@ locals {
   ssm_path_primary = "arn:${var.aws_partition}:ssm:${var.aws_region}:${var.aws_account_id}:parameter/projects/${var.repo_name}/*"
   ssm_path_replica = "arn:${var.aws_partition}:ssm:${var.aws_region_replica}:${var.aws_account_id}:parameter/projects/${var.repo_name}/*"
 
+  # Shared Git Deploy Key SSM Paths
+  ssm_git_deploy_key_path_primary = "arn:${var.aws_partition}:ssm:${var.aws_region}:${var.aws_account_id}:parameter/projects/_git-deploy-key/*"
+  ssm_git_deploy_key_path_replica = "arn:${var.aws_partition}:ssm:${var.aws_region_replica}:${var.aws_account_id}:parameter/projects/_git-deploy-key/*"
+
   # SSH Key SSM Paths
   ssh_private_key_openssh_path = "/projects/${var.repo_name}/ssh-private-key-openssh"
   ssh_private_key_pem_path     = "/projects/${var.repo_name}/ssh-private-key-pem"
