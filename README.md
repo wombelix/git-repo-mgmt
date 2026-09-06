@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2025 Dominik Wombacher <dominik@wombacher.cc>
+SPDX-FileCopyrightText: 2026 Dominik Wombacher <dominik@wombacher.cc>
 
 SPDX-License-Identifier: Apache-2.0
 -->
@@ -9,6 +9,8 @@ SPDX-License-Identifier: Apache-2.0
 OpenTofu based management of my git repositories on Github, Gitlab and Codeberg.
 
 [![REUSE status](https://api.reuse.software/badge/github.com/wombelix/git-repo-mgmt)](https://api.reuse.software/info/github.com/wombelix/git-repo-mgmt)
+[![OpenTofu](https://github.com/wombelix/git-repo-mgmt/actions/workflows/opentofu.yml/badge.svg)](https://github.com/wombelix/git-repo-mgmt/actions/workflows/opentofu.yml)
+[![Mirror](https://github.com/wombelix/git-repo-mgmt/actions/workflows/mirror.yml/badge.svg)](https://github.com/wombelix/git-repo-mgmt/actions/workflows/mirror.yml)
 
 ## Table of Contents
 
@@ -41,7 +43,7 @@ TF_VAR_aws_s3_bucket
 TF_VAR_project
 ```
 
-By default, Githjub is used as the primary repository with mirrors on
+By default, GitHub is used as the primary repository with mirrors on
 Codeberg and Gitlab. To use a different platform as primary,
 set the `primary_platform` variable:
 
@@ -73,7 +75,7 @@ module "gitlab-only-repo" {
 ```
 
 Or create a repository on Gitlab with mirror
-on Githuh:
+on GitHub:
 
 ```hcl
 module "gitlab-with-mirror" {
@@ -158,8 +160,17 @@ module "repo-with-ssh-key" {
 
 Keys are stored at:
 
-* `/projects/{repo_name}/ssh-key` - Private key (SecureString, KMS encrypted)
-* `/projects/{repo_name}/ssh-key-pub` - Public key (String)
+* `/projects/{repo_name}/ssh-private-key-openssh` - Private key in OpenSSH
+  format (SecureString, KMS encrypted)
+* `/projects/{repo_name}/ssh-private-key-pem` - Private key in PEM format
+  (SecureString, KMS encrypted)
+* `/projects/{repo_name}/ssh-public-key-openssh` - Public key in OpenSSH
+  format (String)
+* `/projects/{repo_name}/ssh-public-key-pem` - Public key in PEM format
+  (String)
+* `/projects/{repo_name}/ssh-key-fingerprint-md5` - MD5 fingerprint (String)
+* `/projects/{repo_name}/ssh-key-fingerprint-sha256` - SHA256 fingerprint
+  (String)
 
 Keys are replicated to both primary (eu-central-1) and replica (eu-west-1) regions.
 
