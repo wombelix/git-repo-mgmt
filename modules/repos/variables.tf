@@ -44,12 +44,13 @@ variable "primary_platform" {
   }
   validation {
     condition = (
+      (!var.enable_sourcehut && !var.enable_github && !var.enable_gitlab && !var.enable_codeberg) ||
       (var.primary_platform == "sourcehut" && var.enable_sourcehut) ||
       (var.primary_platform == "github" && var.enable_github) ||
       (var.primary_platform == "gitlab" && var.enable_gitlab) ||
       (var.primary_platform == "codeberg" && var.enable_codeberg)
     )
-    error_message = "The primary_platform must be enabled (corresponding enable_* variable must be true)."
+    error_message = "The primary_platform must be enabled (corresponding enable_* variable must be true), unless all platforms are disabled."
   }
 }
 
