@@ -15,6 +15,8 @@ OpenTofu based management of my git repositories on Github, Gitlab and Codeberg.
 * [Usage](#usage)
 * [AWS IAM Role Integration](#aws-iam-role-integration)
 * [SSH Key Generation](#ssh-key-generation)
+* [Shared Git Deploy Key](#shared-git-deploy-key)
+* [Existing repositories](#existing-repositories)
 * [Source](#source)
 * [Contribute](#contribute)
 * [License](#license)
@@ -167,6 +169,33 @@ To rotate a key, increment `aws_ssh_key_version`:
 aws_ssh_key_version = 2  # Triggers key regeneration
 ```
 
+## Shared Git Deploy Key
+
+A shared SSH deploy key is used for mirroring repositories from GitHub
+to other platforms (GitLab, Codeberg). Meant as temporary solution,
+to be replaced with a ssh deploy key per repo at a later point.
+Leverages the existing `aws_ssh_key.tf` implementation, to store the ssh private
+and public key und `/projects/_git-deploy-key/ssh-*` in SSM param store.
+
+Repos that need to read this key set `enable_aws_ssm_read_git_deploy_key` to
+`true`.
+
+```hcl
+module "my-project" {
+  source      = "./modules/repos"
+  repo_name   = "my-project"
+  description = "Project with access to git deploy key"
+
+  enable_aws_iam_role                = true
+  enable_aws_ssm_read_git_deploy_key = true
+}
+```
+
+The public key must be added manually once to all target platforms on an
+account level.
+
+## Existing repositories
+
 To manage already existing repositories, use
 `tofu import 'module.<modulename>.<resource>[0]' <resourcename>`, example:
 `tofu import 'module.tmp-opentofu-test-repo.github_repository.github[0]' tmp-opentofu-test-repo`
@@ -177,14 +206,12 @@ The primary location is:
 [github.com/wombelix/git-repo-mgmt](https://github.com/wombelix/git-repo-mgmt)
 
 Mirrors are available on
-[Codeberg](https://codeberg.org/wombelix/git-repo-mgmt),
-[Gitlab](https://gitlab.com/wombelix/git-repo-mgmt)
-and
-[GitHub](https://github.com/wombelix/git-repo-mgmt).
+[Codeberg](https://codeberg.org/wombelix/git-repo-mgmt) and
+[Gitlab](https://gitlab.com/wombelix/git-repo-mgmt).
 
 ## Contribute
 
-Please don't hesitate to provide feedback,
+Don't hesitate to provide feedback,
 open an issue, or create a Pull / Merge Request.
 
 Just pick the workflow or platform you prefer and are most comfortable with.
