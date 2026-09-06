@@ -7,8 +7,9 @@
 # Interim solution, to be replaced by a ssh deploy key per repo later.
 
 module "git-deploy-key" {
-  source    = "./modules/repos"
-  repo_name = "_git-deploy-key"
+  source      = "./modules/repos"
+  repo_name   = "_git-deploy-key"
+  description = "Shared git deploy key for repository mirroring"
 
   enable_sourcehut = false
   enable_github    = false
