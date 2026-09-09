@@ -222,10 +222,9 @@ Mirrors are available on
 
 ## Contribute
 
-Don't hesitate to provide feedback,
-open an issue, or create a Pull / Merge Request.
+Pick the platform you prefer and are most comfortable with.
 
-Just pick the workflow or platform you prefer and are most comfortable with.
+Provide feedback, open an issue or create a pull / merge request.
 
 ## License
 
