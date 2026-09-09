@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Dominik Wombacher <dominik@wombacher.cc>
+# SPDX-FileCopyrightText: 2026 Dominik Wombacher <dominik@wombacher.cc>
 #
 # SPDX-License-Identifier: Apache-2.0
 
