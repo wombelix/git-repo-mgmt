@@ -8,5 +8,6 @@ module "dominik-wombacher-cc" {
   description = "Website: dominik.wombacher.cc, The Wombelix Post"
 
   enable_aws_iam_role                = true
+  enable_aws_ssm_read                = true
   enable_aws_ssm_read_git_deploy_key = true
 }
