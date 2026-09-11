@@ -8,9 +8,11 @@ SPDX-License-Identifier: Apache-2.0
 
 OpenTofu based management of my git repositories on Github, Gitlab and Codeberg.
 
+<!-- markdownlint-disable MD013 -->
 [![REUSE status](https://api.reuse.software/badge/github.com/wombelix/git-repo-mgmt)](https://api.reuse.software/info/github.com/wombelix/git-repo-mgmt)
 [![OpenTofu](https://github.com/wombelix/git-repo-mgmt/actions/workflows/opentofu.yml/badge.svg)](https://github.com/wombelix/git-repo-mgmt/actions/workflows/opentofu.yml)
 [![Mirror](https://github.com/wombelix/git-repo-mgmt/actions/workflows/mirror.yml/badge.svg)](https://github.com/wombelix/git-repo-mgmt/actions/workflows/mirror.yml)
+<!-- markdownlint-enable MD013 -->
 
 ## Table of Contents
 
@@ -28,7 +30,7 @@ OpenTofu based management of my git repositories on Github, Gitlab and Codeberg.
 To interact with AWS (S3 Backend and KMS encryption) and the various git forges,
 the following Environment variables have to be set:
 
-```
+```text
 AWS_REGION
 AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
@@ -120,7 +122,7 @@ module "repo-with-aws" {
 
   # Enable IAM role (requires at least one feature below)
   enable_aws_iam_role         = true
-  enable_aws_opentofu_backend = true  # Access to OpenTofu state (S3, DynamoDB, KMS)
+  enable_aws_opentofu_backend = true  # OpenTofu state (S3, DynamoDB, KMS)
   enable_aws_ssm_read         = true  # Read SSM parameters at /projects/{repo_name}/*
   enable_aws_cross_account_assume = false
 }
