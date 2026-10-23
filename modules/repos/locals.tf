@@ -33,8 +33,14 @@ locals {
   # Role name must match permission boundary pattern: GitHubOIDC-*-ResourceAccess
   aws_role_name = "GitHubOIDC-${var.repo_name}-ResourceAccess"
 
-  # GitHub OIDC subject for main branch
-  github_oidc_subject = "repo:${var.username}/${var.repo_name}:ref:refs/heads/main"
+  # GitHub OIDC subjects for main branch
+  # Legacy name based format, used by repos created before 2026-07-15
+  # Immutable ID based format, default for new or renamed repos since 2026-07-15
+  github_oidc_subjects = concat(
+    ["repo:${var.username}/${var.repo_name}:ref:refs/heads/main"],
+    # Repo ID only exists when the GitHub repo is managed here
+    var.enable_github ? ["repo:${var.username}@${var.user_id}/${var.repo_name}@${github_repository.github[0].repo_id}:ref:refs/heads/main"] : []
+  )
 
   # Common tags for all AWS resources
   aws_tags = {

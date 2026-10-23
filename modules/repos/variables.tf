@@ -8,6 +8,12 @@ variable "username" {
   description = "Username on git forges"
 }
 
+variable "user_id" {
+  type        = string
+  default     = "16312366"
+  description = "GitHub user ID, used in immutable OIDC subject claims"
+}
+
 variable "github_template" {
   type = object({
     owner                = string
@@ -101,6 +107,12 @@ variable "enable_aws_iam_role" {
       )
     )
     error_message = "When enable_aws_iam_role is true, at least one feature must be enabled (enable_aws_opentofu_backend, enable_aws_ssm_read, enable_aws_ssm_read_git_deploy_key, or enable_aws_cross_account_assume)."
+  }
+
+  # The OIDC trust needs the GitHub repo ID
+  validation {
+    condition     = !var.enable_aws_iam_role || var.enable_github
+    error_message = "When enable_aws_iam_role is true, enable_github must be true."
   }
 }
 
