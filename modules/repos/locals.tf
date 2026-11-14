@@ -33,6 +33,16 @@ locals {
   # Role name must match permission boundary pattern: GitHubOIDC-*-ResourceAccess
   aws_role_name = "GitHubOIDC-${var.repo_name}-ResourceAccess"
 
+  # AWS Account
+
+  # Email max 64 characters, the fixed parts use 32, so the name is cut to 32
+  # Trailing - and . are removed, a . before the @ is not a valid address
+  aws_account_email_name_default = replace(substr(var.repo_name, 0, 32), "/[-.]+$/", "")
+  aws_account_email_name         = var.aws_account_email_name != null ? var.aws_account_email_name : local.aws_account_email_name_default
+  aws_account_email              = "dominik.wombacher+aws+${local.aws_account_email_name}@gmail.com"
+
+  aws_account_parent_id = var.aws_account_parked ? var.aws_org_ou_id_suspended : var.aws_org_ou_id_projects
+
   # GitHub OIDC subjects for main branch
   # Legacy name based format, used by repos created before 2026-07-15
   # Immutable ID based format, default for new or renamed repos since 2026-07-15

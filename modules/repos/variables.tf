@@ -140,6 +140,35 @@ variable "enable_aws_cross_account_assume" {
   description = "Grant permission to assume {repo_name}-ProjectRole in organization accounts"
 }
 
+variable "enable_aws_account" {
+  type        = bool
+  default     = false
+  description = "Create an AWS account in the Projects OU with {repo_name}-ProjectRole"
+
+  # ProjectRole trusts the GitHubOIDC-{repo_name}-ResourceAccess role, which needs the assume permission
+  validation {
+    condition     = !var.enable_aws_account || (var.enable_aws_iam_role && var.enable_aws_cross_account_assume)
+    error_message = "When enable_aws_account is true, enable_aws_iam_role and enable_aws_cross_account_assume must be true."
+  }
+}
+
+variable "aws_account_parked" {
+  type        = bool
+  default     = false
+  description = "Move the AWS account to the Suspended OU and remove {repo_name}-ProjectRole"
+}
+
+variable "aws_account_email_name" {
+  type        = string
+  default     = null
+  description = "Override for the name part of the AWS account email, for example after a collision or to re-create a closed account"
+
+  validation {
+    condition     = var.aws_account_email_name == null || length(var.aws_account_email_name) <= 32
+    error_message = "aws_account_email_name must be at most 32 characters."
+  }
+}
+
 variable "enable_aws_ssh_key" {
   type        = bool
   default     = false
@@ -249,4 +278,16 @@ variable "aws_account_vending_role_arn" {
   type        = string
   default     = "arn:aws:iam::992382651568:role/AccountVendingRole"
   description = "ARN of the account vending role in the management account"
+}
+
+variable "aws_org_ou_id_projects" {
+  type        = string
+  default     = "ou-lp71-146074dn"
+  description = "AWS Organizations OU ID for project accounts"
+}
+
+variable "aws_org_ou_id_suspended" {
+  type        = string
+  default     = "ou-lp71-1e888z5z"
+  description = "AWS Organizations OU ID for parked accounts"
 }
