@@ -48,3 +48,14 @@ provider "aws" {
   alias  = "replica"
   region = var.aws_region_replica
 }
+
+# Management account, account vending and ProjectRole stack instances
+provider "aws" {
+  alias  = "vending"
+  region = var.aws_region
+
+  assume_role {
+    role_arn     = var.aws_account_vending_role_arn
+    session_name = "git-repo-mgmt-${var.repo_name}"
+  }
+}

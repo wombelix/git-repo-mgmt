@@ -244,3 +244,9 @@ variable "aws_permission_boundary_arn" {
   default     = "arn:aws:iam::992382418145:policy/GitRepoMgmtPermissionBoundary"
   description = "ARN of the permission boundary for created roles"
 }
+
+variable "aws_account_vending_role_arn" {
+  type        = string
+  default     = "arn:aws:iam::992382651568:role/AccountVendingRole"
+  description = "ARN of the account vending role in the management account"
+}
