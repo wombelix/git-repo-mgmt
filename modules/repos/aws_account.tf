@@ -46,3 +46,21 @@ resource "aws_cloudformation_stack_set_instance" "project_role" {
     RepoName = var.repo_name
   }
 }
+
+# Account ID and ProjectRole ARN as GitHub Actions variables for the project pipeline
+# enable_aws_account implies enable_github, through the enable_aws_iam_role validation
+resource "github_actions_variable" "aws_account_id" {
+  count = var.enable_aws_account ? 1 : 0
+
+  repository    = github_repository.github[0].name
+  variable_name = "AWS_ACCOUNT_ID"
+  value         = aws_organizations_account.project[0].id
+}
+
+resource "github_actions_variable" "aws_project_role_arn" {
+  count = var.enable_aws_account ? 1 : 0
+
+  repository    = github_repository.github[0].name
+  variable_name = "AWS_PROJECT_ROLE_ARN"
+  value         = "arn:${var.aws_partition}:iam::${aws_organizations_account.project[0].id}:role/${var.repo_name}-ProjectRole"
+}
